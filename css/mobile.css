@@ -58,17 +58,44 @@
     line-height:1;
   }
   .profile-strip.expanded .profile-toggle::after{content:"−"}
+  .rank-list{
+    gap:9px;
+    padding-right:8px;
+    scroll-snap-type:y proximity;
+    overscroll-behavior:contain;
+  }
   .rank-row{
-    grid-template-columns:34px minmax(0, 1fr);
-    gap:4px 10px;
-    align-items:start;
+    grid-template-columns:46px minmax(0, 1fr);
+    gap:12px;
+    min-height:74px;
+    padding:14px 13px;
+    align-items:center;
+    scroll-snap-align:start;
+  }
+  .rank-no{
+    align-self:center;
+    font-size:18px;
+    text-align:center;
+  }
+  .rank-main{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:4px;
+    min-width:0;
+  }
+  .rank-name{
+    line-height:1.25;
   }
   .rank-status{
-    grid-column:2;
     max-width:100%;
     color:var(--blue-2);
     font-size:12px;
+    line-height:1.3;
     text-align:left;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+    word-break:keep-all;
   }
   .position-box{
     align-items:stretch;
