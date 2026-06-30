@@ -18,7 +18,7 @@
 }
 .rank-row{
   display:grid;
-  grid-template-columns:42px minmax(0, 1fr) auto;
+  grid-template-columns:42px minmax(0, 1fr) minmax(104px, auto);
   gap:10px;
   align-items:center;
   min-height:48px;
@@ -46,11 +46,16 @@
   color:var(--text);
   font-weight:800;
 }
-.rank-value{
+.rank-value,
+.rank-status{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
   color:var(--sub);
   font-size:13px;
-  white-space:nowrap;
-  font-weight:700;
+  font-weight:800;
+  text-align:right;
 }
 .self-rank{
   margin-top:auto;
