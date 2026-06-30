@@ -1,7 +1,35 @@
 import { RANK_LIMIT } from "../config.js";
-import { formatWon } from "../utils.js";
 import { div, playerKeyOf, rankValue } from "./dom.js";
 import { els } from "./elements.js";
+
+function field(row, snakeName, camelName) {
+  return row[snakeName] ?? row[camelName] ?? "";
+}
+
+function shareCount(row) {
+  const value = Number(field(row, "shares", "shares"));
+  return Number.isFinite(value) ? value : 0;
+}
+
+function companyLabel(row) {
+  return String(field(row, "position_company", "positionCompany") || field(row, "position_symbol", "positionSymbol") || "").trim();
+}
+
+function gradeByShares(shares) {
+  if (shares >= 50) return "대주주";
+  if (shares >= 20) return "핵심주주";
+  if (shares > 0) return "일반주주";
+  return "보유 주식 없음";
+}
+
+function holdingLabel(row) {
+  const shares = shareCount(row);
+  if (shares <= 0) return "보유 주식 없음";
+
+  const company = companyLabel(row);
+  const grade = String(field(row, "shareholder_grade", "shareholderGrade") || gradeByShares(shares)).trim();
+  return company ? `${company} · ${grade}` : grade;
+}
 
 function createRankRow(row, playerKey) {
   const item = document.createElement("div");
@@ -10,7 +38,7 @@ function createRankRow(row, playerKey) {
   item.append(
     div("rank-no", String(rankValue(row) || "--")),
     div("rank-name", row.display_name || row.displayName || "UNKNOWN"),
-    div("rank-value", formatWon(row.total_equity ?? row.totalEquity))
+    div("rank-status", holdingLabel(row))
   );
   return item;
 }
@@ -27,9 +55,9 @@ export function renderLeaderboard(rows, playerKey) {
   } else {
     const empty = document.createElement("div");
     empty.className = "rank-row";
-    empty.append(div("rank-no", "--"), div("rank-name", "NO DATA"), div("rank-value", "0원"));
+    empty.append(div("rank-no", "--"), div("rank-name", "NO DATA"), div("rank-status", "보유 주식 없음"));
     els.rankList.replaceChildren(empty);
   }
 
-  els.selfRank.textContent = selfRow ? `${rankValue(selfRow)}위 · ${formatWon(selfRow.total_equity ?? selfRow.totalEquity)}` : "순위 산출 대기";
+  els.selfRank.textContent = selfRow ? `${rankValue(selfRow)}위 · ${holdingLabel(selfRow)}` : "순위 산출 대기";
 }
