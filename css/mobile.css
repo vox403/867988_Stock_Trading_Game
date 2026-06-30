@@ -58,6 +58,18 @@
     line-height:1;
   }
   .profile-strip.expanded .profile-toggle::after{content:"−"}
+  .rank-row{
+    grid-template-columns:34px minmax(0, 1fr);
+    gap:4px 10px;
+    align-items:start;
+  }
+  .rank-status{
+    grid-column:2;
+    max-width:100%;
+    color:var(--blue-2);
+    font-size:12px;
+    text-align:left;
+  }
   .position-box{
     align-items:stretch;
     flex-direction:column;
