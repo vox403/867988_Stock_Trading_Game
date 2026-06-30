@@ -33,13 +33,16 @@ function holdingLabel(row) {
 
 function createRankRow(row, playerKey) {
   const item = document.createElement("div");
+  const main = document.createElement("div");
   const isSelf = playerKeyOf(row) === playerKey;
+
   item.className = `rank-row${isSelf ? " self" : ""}`;
-  item.append(
-    div("rank-no", String(rankValue(row) || "--")),
+  main.className = "rank-main";
+  main.append(
     div("rank-name", row.display_name || row.displayName || "UNKNOWN"),
     div("rank-status", holdingLabel(row))
   );
+  item.append(div("rank-no", String(rankValue(row) || "--")), main);
   return item;
 }
 
@@ -54,8 +57,11 @@ export function renderLeaderboard(rows, playerKey) {
     els.rankList.replaceChildren(...topRows.map((row) => createRankRow(row, playerKey)));
   } else {
     const empty = document.createElement("div");
+    const main = document.createElement("div");
     empty.className = "rank-row";
-    empty.append(div("rank-no", "--"), div("rank-name", "NO DATA"), div("rank-status", "보유 주식 없음"));
+    main.className = "rank-main";
+    main.append(div("rank-name", "NO DATA"), div("rank-status", "보유 주식 없음"));
+    empty.append(div("rank-no", "--"), main);
     els.rankList.replaceChildren(empty);
   }
 
