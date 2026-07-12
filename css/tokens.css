@@ -1,0 +1,18 @@
+:root{
+  --bg:#02040a;
+  --panel:rgba(6,14,24,.92);
+  --panel-soft:rgba(255,255,255,.035);
+  --line:rgba(120,202,255,.26);
+  --line-soft:rgba(123,205,255,.15);
+  --text:#e9f7ff;
+  --sub:#9ec7db;
+  --blue:#25d0ff;
+  --blue-2:#5ee7ff;
+  --pink:#ff47a7;
+  --red:#ff355f;
+  --green:#8bffdf;
+  --gold:#ffd979;
+  --shadow:0 0 28px rgba(37,208,255,.14), 0 18px 44px rgba(0,0,0,.42);
+  --font-ui:"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-display:"Orbitron", "Noto Sans KR", sans-serif;
+}

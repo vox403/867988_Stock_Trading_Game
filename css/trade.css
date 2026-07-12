@@ -1,0 +1,40 @@
+.stock-order input{
+  width:100%;
+  min-width:0;
+  padding:13px 14px;
+  border:1px solid rgba(123,205,255,.24);
+  background:rgba(4,12,20,.86);
+  color:var(--text);
+  font-size:17px;
+  outline:none;
+}
+.stock-order input:focus{
+  border-color:rgba(94,231,255,.62);
+  box-shadow:0 0 0 4px rgba(37,208,255,.10);
+}
+.stock-card button,
+.position-box button{
+  min-height:46px;
+  padding:0 16px;
+  color:#041018;
+  background:linear-gradient(90deg, var(--blue), var(--blue-2));
+  font-weight:900;
+  letter-spacing:.07em;
+  box-shadow:0 0 18px rgba(37,208,255,.24);
+  white-space:nowrap;
+}
+.stock-order-shortcuts button{
+  min-height:38px;
+  color:#d6f4ff;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(123,205,255,.20);
+  box-shadow:none;
+  font-family:var(--font-display);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.stock-card button:hover,
+.position-box button:hover{
+  filter:brightness(1.08);
+}
